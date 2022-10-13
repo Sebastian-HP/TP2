@@ -3,17 +3,26 @@ Projet fait par Sebastian Hasbun Poveda le 30-09-2022
 Groupe 403
 Code joue un jeu de devinette evec l'usager ou il doit deviner un nombre choisi par le code entre 0 et 100
 """
-
 from random import randint
-score = 0
+
 continue_playing = True
 
 
 def check_answer(answer):
+    """
+    Indique si la reponse est plus petite ou plus grande que la reponse de l'ordi
+    :param answer: nombre du joueur
+
+    :return: None
+    """
     print(f"Votre essai est plus {answer} que le numero\n")
 
 
 def correct_answer():
+    """
+    Indique le score et demande si le joueur veut rejouer
+    :return:
+    """
     global continue_playing, answer_found, score
     print(f"\nVous avez choisi le bon numero\nVotre score est: {score}")
     continue_playing_answer = input("Voulez vous continuer? y/n")
@@ -23,12 +32,10 @@ def correct_answer():
 
 
 while continue_playing:
+    score = 0
     answer_found = False
-    minimum, maximum = input("entrer les bornes (min et max): ").split(' et ')  # '5 et 6' -> ['5', '6'] -> [5, 6]
-    maximum = int(maximum)
-    minimum = int(minimum)
+    minimum, maximum = int(input("Borne Minimale:")), int(input("Borne Maximale:"))
     computer_generated_number = randint(minimum, maximum)
-    print(f"\n")
 
     while not answer_found:
         player_guess = int(input("\nDevinez:"))
